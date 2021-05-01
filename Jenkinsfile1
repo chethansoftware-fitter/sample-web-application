@@ -1,4 +1,5 @@
 pipeline {
+def mavenHome= tool name : "Maven"
     agent any
     environment {
         BUILD_COMPLETE = false
@@ -9,8 +10,8 @@ pipeline {
             parallel {
                 stage('Building') {
                     steps {
-                        
-                        sh "mvn clean install |  tee output.log"
+                        sh "${mavenHome}/bin/mvn clean package |  tee output.log"
+                       
 
                         sh '! grep "WARNING" output.log'
 
