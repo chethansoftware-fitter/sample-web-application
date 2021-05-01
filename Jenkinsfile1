@@ -10,7 +10,7 @@ pipeline {
             parallel {
                 stage('Building') {
                     steps {
-                        def mavenHome= tool name : "Maven"
+                         mavenHome= tool name : "Maven"
                         sh "${mavenHome}/bin/mvn clean package |  tee output.log"
                        
                         sh '! grep "WARNING" output.log'
